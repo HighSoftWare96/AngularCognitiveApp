@@ -17,6 +17,7 @@ import { MdTooltipModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule } from "@angular/http";
+import {MdProgressSpinnerModule} from '@angular/material';
 
 const appRoutes: Routes = [
   { path: '', component: EmotionRecAPIComponent },
@@ -40,6 +41,7 @@ const appRoutes: Routes = [
     MdButtonModule,
     MdCheckboxModule,
     MdProgressBarModule,
+    MdProgressSpinnerModule,
     MdCardModule,
     MdIconModule,
     FormsModule,

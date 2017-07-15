@@ -1,6 +1,24 @@
 input[type="file"] {
     display: none;
 }
+h2{
+  color: white;
+}
+
+#header {
+  background-color: black;
+  border-radius: 5px 5px 0px 0px;
+}
+
+#commands {
+  background-color: lightgray;
+  padding: 12px 2px 12px 2px;
+}
+
+#results {
+    background-color: #f2f2f2;
+    padding: 12px 22px 12px 22px;
+}
 .custom-file-upload {
     font-style: normal;
     border: 1px solid #ccc;

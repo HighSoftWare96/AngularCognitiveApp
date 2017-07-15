@@ -1,30 +1,32 @@
 <router-outlet>
-  <div class="row">
+  <div class="row" id="header">
     <h2>Emotion Recognition API</h2>
   </div>
-  <br>
-  <div class="row">
-    <div class="col-md-8">
+  <div class="row" id="commands">
+    <div class="col-md-10" style="text-align: left;">
       <input id="fileToUpload" type="file" style="display:none;" #fileInput (change)="addedImage($event)">
       <button md-raised-button type="button" onchange="document.getElementById('fileToUpload').click()">
       <label for="fileToUpload">Upload an image</label> 
       </button> &nbsp;&nbsp;&nbsp;{{this.fileName}}
-    </div>
-    <div class="col-md-4" mdTooltip="Send for processing!" position="above">
-      <button md-fab color="warn" (click)="sendImage()"><md-icon>launch</md-icon></button>
+    </div> 
+    <div class="col-md-2" style="text-align: right;">
+      <button md-raised-button type="button" (click)="sendImage()" ><b style="color:#990000;">Send request</b></button>
     </div>
   </div>
-  <br>
-  <div class="row">
-
-    <div class="col-md-5">
-      <canvas #imagePlaceholder></canvas>
+  <div class="row" id="results">
+    <div class="col-md-5" [style.visibility]="this.canvasVisibility">
+      <canvas #imagePlaceholder class="img-responsive" alt="Responsive image" class="img-thumbnail"></canvas>
     </div>
 
     <br>
-    <div class="col-md-7">
+    <div class="col-md-7" >
+      <md-progress-bar *ngIf="loading" mode="query"></md-progress-bar>
       <br>
+      <div *ngIf="this.emotions.length > 0" style="font-size: 1.2em;">Possible emotions:
+        <b *ngFor="let item of this.emotions"> {{item}} </b>
+      </div><br>
       <div class="row" *ngFor="let item of this.ImageResultArray">
+        <h5>Individual n.{{this.ImageResultArray.indexOf(item)}}</h5>
         <md-card>
           <md-card-header>
             <div md-card-avatar class="anger"></div>
@@ -38,8 +40,8 @@
         <br>
         <md-card>
           <md-card-header>
-            <div md-card-avatar class="comtempt"></div>
-            <md-card-title>Comtempt: </md-card-title>
+            <div md-card-avatar class="contempt"></div>
+            <md-card-title>Contempt: </md-card-title>
             <md-card-subtitle>{{item.scores.contempt}} %</md-card-subtitle>
           </md-card-header>
           <md-card-content>
@@ -101,6 +103,7 @@
             <md-progress-bar mode="determinate" [value]="item.scores.sadness"></md-progress-bar>
           </md-card-content>
         </md-card>
+        <br>
         <md-card>
           <md-card-header>
             <div md-card-avatar class="surprise"></div>
@@ -113,7 +116,9 @@
         </md-card>
         <br>
         <br>
+        <hr>
       </div>
+      
     </div>
 
   </div>

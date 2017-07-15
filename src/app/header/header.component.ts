@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  title = "Microsoft Cognitive with Angular";  
+  title = "Microsoft Cognitive with Angular 2";  
   constructor() { }
 
   ngOnInit() {
