@@ -1,3 +1,114 @@
 <router-outlet>
-  <h2>Emotion Recognition API</h2>
+  <div class="row">
+    <h2>Emotion Recognition API</h2>
+  </div>
+  <div class="row">
+    <input id="fileToUpload" type="file" style="display:none;" #fileInput (change)="addedImage($event)">
+    <button md-raised-button type="button" onchange="document.getElementById('fileToUpload').click()">
+        <label for="fileToUpload">Upload an image</label> 
+    </button>
+  </div>
+  <br>
+  <div class="row">
+
+    <div class="col-md-5">
+      <canvas #imagePlaceholder class="img-thumbnail"></canvas>
+    </div>
+
+    <br>
+    <div class="col-md-7">
+      <br>
+      <div class="row" *ngFor="let item of this.ImageResultArray">
+        <md-card>
+          <md-card-header>
+            <div md-card-avatar class="anger"></div>
+            <md-card-title>Anger: </md-card-title>
+            <md-card-subtitle>{{item.scores.anger}} %</md-card-subtitle>
+          </md-card-header>
+          <md-card-content>
+            <md-progress-bar mode="determinate" [value]="item.scores.anger"></md-progress-bar>
+          </md-card-content>
+        </md-card>
+        <br>
+        <md-card>
+          <md-card-header>
+            <div md-card-avatar class="comtempt"></div>
+            <md-card-title>Comtempt: </md-card-title>
+            <md-card-subtitle>{{item.scores.contempt}} %</md-card-subtitle>
+          </md-card-header>
+          <md-card-content>
+            <md-progress-bar mode="determinate" [value]="item.scores.contempt"></md-progress-bar>
+          </md-card-content>
+        </md-card>
+        <br>
+        <md-card>
+          <md-card-header>
+            <div md-card-avatar class="disgust"></div>
+            <md-card-title>Disgust: </md-card-title>
+            <md-card-subtitle>{{item.scores.disgust}} %</md-card-subtitle>
+          </md-card-header>
+          <md-card-content>
+            <md-progress-bar mode="determinate" [value]="item.scores.disgust"></md-progress-bar>
+          </md-card-content>
+        </md-card>
+        <br>
+        <md-card>
+          <md-card-header>
+            <div md-card-avatar class="fear"></div>
+            <md-card-title>Fear: </md-card-title>
+            <md-card-subtitle>{{item.scores.fear}} %</md-card-subtitle>
+          </md-card-header>
+          <md-card-content>
+            <md-progress-bar mode="determinate" [value]="item.scores.fear"></md-progress-bar>
+          </md-card-content>
+        </md-card>
+        <br>
+        <md-card>
+          <md-card-header>
+            <div md-card-avatar class="happiness"></div>
+            <md-card-title>Happiness: </md-card-title>
+            <md-card-subtitle>{{item.scores.happiness}} %</md-card-subtitle>
+          </md-card-header>
+          <md-card-content>
+            <md-progress-bar mode="determinate" [value]="item.scores.happiness"></md-progress-bar>
+          </md-card-content>
+        </md-card>
+        <br>
+        <md-card>
+          <md-card-header>
+            <div md-card-avatar class="neutral"></div>
+            <md-card-title>Neutral: </md-card-title>
+            <md-card-subtitle>{{item.scores.neutral}} %</md-card-subtitle>
+          </md-card-header>
+          <md-card-content>
+            <md-progress-bar mode="determinate" [value]="item.scores.neutral"></md-progress-bar>
+          </md-card-content>
+        </md-card>
+        <br>
+        <md-card>
+          <md-card-header>
+            <div md-card-avatar class="sadness"></div>
+            <md-card-title>Sadness: </md-card-title>
+            <md-card-subtitle>{{item.scores.sadness}} %</md-card-subtitle>
+          </md-card-header>
+          <md-card-content>
+            <md-progress-bar mode="determinate" [value]="item.scores.sadness"></md-progress-bar>
+          </md-card-content>
+        </md-card>
+        <md-card>
+          <md-card-header>
+            <div md-card-avatar class="surprise"></div>
+            <md-card-title>Surprise: </md-card-title>
+            <md-card-subtitle>{{item.scores.surprise}} %</md-card-subtitle>
+          </md-card-header>
+          <md-card-content>
+            <md-progress-bar mode="determinate" [value]="item.scores.surprise"></md-progress-bar>
+          </md-card-content>
+        </md-card>
+        <br>
+        <br>
+      </div>
+    </div>
+
+  </div>
 </router-outlet>

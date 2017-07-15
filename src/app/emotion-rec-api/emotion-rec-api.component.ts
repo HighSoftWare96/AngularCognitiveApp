@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ResultData } from '../definitions';
 
 @Component({
   selector: 'app-emotion-rec-api',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./emotion-rec-api.component.css']
 })
 export class EmotionRecAPIComponent implements OnInit {
+  public ImageResultArray: ResultData[];
 
   constructor() { }
 

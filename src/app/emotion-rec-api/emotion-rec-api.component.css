@@ -1,0 +1,69 @@
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    font-style: normal;
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+.emotion_avatar_img {
+    width: 50px;
+    height: 50px;
+  background-image: url('/assets/images/contempt.png');
+  background-size: cover;
+}
+
+.anger {
+    width: 50px;
+    height: 50px;
+  background-image: url('/assets/images/anger.png');
+  background-size: cover;
+}
+
+.contempt {
+    width: 50px;
+    height: 50px;
+  background-image: url('/assets/images/contempt.png');
+  background-size: cover;
+}
+.surprise {
+    width: 50px;
+    height: 50px;
+  background-image: url('/assets/images/surprise.png');
+  background-size: cover;
+}
+.disgust {
+    width: 50px;
+    height: 50px;
+  background-image: url('/assets/images/disgust.png');
+  background-size: cover;
+}
+.fear {
+    width: 50px;
+    height: 50px;
+  background-image: url('/assets/images/fear.png');
+  background-size: cover;
+}
+.neutral {
+    width: 50px;
+    height: 50px;
+  background-image: url('/assets/images/neutral.png');
+  background-size: cover;
+}
+.sadness {
+    width: 50px;
+    height: 50px;
+  background-image: url('/assets/images/sadness.png');
+  background-size: cover;
+}
+
+.happiness {
+    width: 50px;
+    height: 50px;
+  background-image: url('/assets/images/happiness.png');
+  background-size: cover;
+}
+
