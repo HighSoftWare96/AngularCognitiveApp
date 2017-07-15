@@ -1,4 +1,10 @@
+.header {
+    background-color: lightgray;
+    height: 200px; 
+    box-shadow: 2px 2px 14px gray;
+}
 h1 {
+    text-shadow: 2px 2px 14px gray; 
     font-family: 'Lemon/Milk', 'Helvetica', 'Arial', sans-serif;
     font-size: 3em;
     color:black;
