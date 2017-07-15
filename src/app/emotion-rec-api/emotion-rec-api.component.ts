@@ -9,11 +9,14 @@ import { Http, RequestOptionsArgs, Headers } from "@angular/http";
   styleUrls: ['./emotion-rec-api.component.css']
 })
 export class EmotionRecAPIComponent implements OnInit {
+
   @ViewChild("fileInput") fileInput;
   @ViewChild("imagePlaceholder") imageCanvas: HTMLCanvasElement;
+
   public ImageResultArray: ResultData[];
   public fileName: String;
   private rawFileData: any;
+  private rawFileDataCanvas: String;
 
   constructor(private http: Http) { }
 
@@ -27,6 +30,7 @@ export class EmotionRecAPIComponent implements OnInit {
   }
 
   readNewImage(inputValue: any): void {
+    console.log(fileInput);
     // prendo il primo file che si è memorizzato nell'evento
     var fileInput: File = inputValue.files[0];
     var inputFromFile: FileReader = new FileReader();
@@ -38,10 +42,10 @@ export class EmotionRecAPIComponent implements OnInit {
     }.bind(this);
 
     inputFromFile64.onloadend = function (e) {
-      this.rawfileData = inputFromFile64.result;
+      this.rawFileDataCanvas = inputFromFile64.result;
       this.imageCanvas = new HTMLCanvasElement();
       let ctx = this.imageCanvas.getContext("2d");
-      ctx.drawImage(this.rawfileData, 0, 0, this.rawfileData.width, this.rawfileData.height);
+      ctx.drawImage(this.rawFileDataCanvas, 0, 0, this.rawFileDataCanvas.width, this.rawFileDataCanvas.height);
     }.bind(this);
 
     inputFromFile.readAsArrayBuffer(fileInput);
