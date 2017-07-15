@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 
 @Component({
   selector: 'buttons-frame',
@@ -7,11 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ButtonsFrameComponent implements OnInit {
 
-  available_services = ['Emotion Recognition', 'Face Recognition', 'Bing images search', 'Text analytics', 'Traslator'];
+  available_services = ['Emotion Recognition API', 'Face Recognition API', 'Bing images search', 'Text analytics', 'Traslator API'];
 
-  constructor() { }
+  constructor(private location: Location, private router: Router) { }
 
   ngOnInit() {
+  }
+
+  changeRouting(service) {
+    switch (service) {
+      case this.available_services[0]:
+        this.router.navigate(['/emotionAPI']);
+        break;
+      case this.available_services[1]:
+        this.router.navigate(['/faceAPI']);
+        break;
+    }
   }
 
 }
