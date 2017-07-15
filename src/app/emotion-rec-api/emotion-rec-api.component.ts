@@ -43,8 +43,7 @@ export class EmotionRecAPIComponent implements OnInit {
 
     inputFromFile64.onloadend = function (e) {
       this.rawFileDataCanvas = inputFromFile64.result;
-      this.imageCanvas = new HTMLCanvasElement();
-      let ctx = this.imageCanvas.getContext("2d");
+      let ctx = this.imageCanvas.nativeElement.getContext("2d");
       ctx.drawImage(this.rawFileDataCanvas, 0, 0, this.rawFileDataCanvas.width, this.rawFileDataCanvas.height);
     }.bind(this);
 
