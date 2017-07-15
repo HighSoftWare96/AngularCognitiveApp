@@ -8,6 +8,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { EmotionRecAPIComponent } from './emotion-rec-api/emotion-rec-api.component';
 import { Http, RequestOptionsArgs, Headers } from "@angular/http";
 import { FaceAPIComponent } from './face-api/face-api.component';
+import {MdButtonModule, MdCheckboxModule} from '@angular/material';
 
 const appRoutes: Routes = [
   { path: '', component: EmotionRecAPIComponent},
@@ -23,10 +24,12 @@ const appRoutes: Routes = [
     HeaderComponent,
     ButtonsFrameComponent,
     EmotionRecAPIComponent,
-    FaceAPIComponent
+    FaceAPIComponent,
   ],
   imports: [
     BrowserModule,
+    MdButtonModule,
+    MdCheckboxModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],

@@ -1,4 +1,4 @@
 <br><br>
-<div class="row" *ngFor="let service of available_services">
-    <button type="button" class="btn btn-default btn-lg" style="width: 250px; margin-bottom: 10px;" (click)="changeRouting(service)">{{service}}</button>
+<div class="button-row" *ngFor="let service of available_services">
+    <button md-raised-button style="width: 250px; margin-bottom: 10px; font-size: 1em;" (click)="changeRouting(service)">{{service}}</button>
 </div>

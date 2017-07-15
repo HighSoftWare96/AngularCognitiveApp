@@ -1,17 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import {MdButtonModule, MdCheckboxModule} from '@angular/material';
 
 @Component({
   selector: 'buttons-frame',
   templateUrl: './buttons-frame.component.html',
-  styleUrls: ['./buttons-frame.component.css']
+  styleUrls: ['./buttons-frame.component.css'],
 })
+
 export class ButtonsFrameComponent implements OnInit {
 
   available_services = ['Emotion Recognition API', 'Face Recognition API', 'Bing images search', 'Text analytics', 'Traslator API'];
 
   constructor(private location: Location, private router: Router) { }
+
+  
 
   ngOnInit() {
   }
