@@ -2,11 +2,18 @@
   <div class="row">
     <h2>Emotion Recognition API</h2>
   </div>
+  <br>
   <div class="row">
-    <input id="fileToUpload" type="file" style="display:none;" #fileInput (change)="addedImage($event)">
-    <button md-raised-button type="button" onchange="document.getElementById('fileToUpload').click()">
-        <label for="fileToUpload">Upload an image</label> 
-    </button>
+    <div class="col-md-8">
+      <input id="fileToUpload" type="file" style="display:none;" #fileInput (change)="addedImage($event)">
+      <button md-raised-button type="button" onchange="document.getElementById('fileToUpload').click()">
+      <label for="fileToUpload">Upload an image</label> 
+      </button>
+      &nbsp;&nbsp;&nbsp;{{this.fileName}}
+    </div>
+    <div class="col-md-4" mdTooltip="Send for processing!" position="above">
+      <button md-fab color="warn" (click)="sendImage()"><md-icon>launch</md-icon></button>
+    </div>
   </div>
   <br>
   <div class="row">
