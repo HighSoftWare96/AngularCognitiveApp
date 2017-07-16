@@ -8,9 +8,9 @@
       <button md-raised-button type="button" onchange="document.getElementById('fileToUpload').click()">
       <label for="fileToUpload">Upload an image</label> 
       </button> &nbsp;&nbsp;&nbsp;{{this.fileName}}
-    </div> 
+    </div>
     <div class="col-md-2" style="text-align: right;">
-      <button md-raised-button type="button" (click)="sendImage()" ><b style="color:#990000;">Send request</b></button>
+      <button md-raised-button type="button" (click)="sendImage()"><md-icon style="color:#990000;">check</md-icon> <b style="color:#990000;">Send request</b></button>
     </div>
   </div>
   <div class="row" id="results">
@@ -19,7 +19,7 @@
     </div>
 
     <br>
-    <div class="col-md-7" >
+    <div class="col-md-7">
       <md-progress-bar *ngIf="loading" mode="query"></md-progress-bar>
       <br>
       <div *ngIf="this.emotions.length > 0" style="font-size: 1.2em;">Possible emotions:
@@ -118,7 +118,7 @@
         <br>
         <hr>
       </div>
-      
+
     </div>
 
   </div>
