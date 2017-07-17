@@ -13,7 +13,7 @@ export class EmotionRecAPIComponent implements OnInit {
   @ViewChild('imagePlaceholder') imageCanvas: any;
 
   public loading: boolean = false;
-  public ImageResultArray: ResultData[];
+  public ImageResultArray: ResultData[] = [];
   public fileName: String;
   private fileData: any = undefined;
   public emotions: String[] = [];

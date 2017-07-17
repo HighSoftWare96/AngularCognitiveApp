@@ -1,12 +1,12 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
-  <app-header></app-header>
-  <br><br>
-  <div class="row">
-    <div class="col-md-3">
+  <md-sidenav-container>
+    <md-sidenav #sidenav>
       <buttons-frame></buttons-frame>
-    </div>
-    <div class="col-md-8">
-      <router-outlet></router-outlet>
-    </div>
-  </div>
+    </md-sidenav>
+    <app-header></app-header>
+    <br>
+    <button type="button" md-raised-button (click)="sidenav.open()"> MENU </button>
+    <br><br>
+    <router-outlet></router-outlet>
+  </md-sidenav-container>

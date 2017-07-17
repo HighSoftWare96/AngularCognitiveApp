@@ -1,125 +1,109 @@
 <router-outlet>
-  <div class="row" id="header">
-    <h2>Emotion Recognition API</h2>
-  </div>
-  <div class="row" id="commands">
-    <div class="col-md-10" style="text-align: left;">
+  <md-grid-list cols="1" rowHeight="50px" id="header">
+    <md-grid-tile>
+      <h2>Emotion Recognition API</h2>
+    </md-grid-tile>
+  </md-grid-list>
+  <md-grid-list cols="2" rowHeight="20px" id="commands">
+    <md-grid-tile style="text-align: left;" rowspan = "3">
       <input id="fileToUpload" type="file" style="display:none;" #fileInput (change)="addedImage($event)">
       <button md-raised-button type="button" onchange="document.getElementById('fileToUpload').click()">
       <label for="fileToUpload">Upload an image</label> 
       </button> &nbsp;&nbsp;&nbsp;{{this.fileName}}
-    </div>
-    <div class="col-md-2" style="text-align: right;">
+    </md-grid-tile>
+    <md-grid-tile style="text-align: right;" rowspan = "3">
       <button md-raised-button type="button" (click)="sendImage()"><md-icon style="color:#990000;">check</md-icon> <b style="color:#990000;">Send request</b></button>
-    </div>
-  </div>
-  <div class="row" id="results">
-    <div class="col-md-5" [style.visibility]="this.canvasVisibility">
+    </md-grid-tile>
+    <md-grid-tile *ngIf="loading" colspan="2" rowspan="1">
+      <md-progress-bar mode="query"></md-progress-bar>
+    </md-grid-tile>
+  </md-grid-list>
+  <md-grid-list cols="2" rowHeight="100px">
+    <md-grid-tile [style.visibility]="this.canvasVisibility" colspan="1" rowspan="6">
       <canvas #imagePlaceholder class="img-responsive" alt="Responsive image" class="img-thumbnail"></canvas>
-    </div>
-
-    <br>
-    <div class="col-md-7">
-      <md-progress-bar *ngIf="loading" mode="query"></md-progress-bar>
-      <br>
-      <div *ngIf="this.emotions.length > 0" style="font-size: 1.2em;">Possible emotions:
-        <b *ngFor="let item of this.emotions"> {{item}} </b>
-      </div><br>
-      <div class="row" *ngFor="let item of this.ImageResultArray">
-        <h5>Individual n.{{this.ImageResultArray.indexOf(item)}}</h5>
-        <md-card>
-          <md-card-header>
-            <div md-card-avatar class="anger"></div>
-            <md-card-title>Anger: </md-card-title>
-            <md-card-subtitle>{{item.scores.anger}} %</md-card-subtitle>
-          </md-card-header>
-          <md-card-content>
+    </md-grid-tile>
+    <md-grid-tile *ngIf="this.emotions.length > 0" style="font-size: 1.2em;">Possible emotions:
+      <b *ngFor="let item of this.emotions"> {{item}} </b>
+    </md-grid-tile>
+    <md-grid-tile *ngFor="let item of this.ImageResultArray" rowspan="8">
+      <md-list>
+        <md-list-item>
+          <h5 md-line>Individual n.{{this.ImageResultArray.indexOf(item)}}</h5>
+        </md-list-item>
+        <md-list-item>
+          <md-icon md-list-icon class="anger"></md-icon>
+          <h4 md-line>Anger: </h4>
+          <p md-line>{{item.scores.anger}} %
             <md-progress-bar mode="determinate" [value]="item.scores.anger"></md-progress-bar>
-          </md-card-content>
-        </md-card>
+          </p>
+        </md-list-item>
         <br>
-        <md-card>
-          <md-card-header>
-            <div md-card-avatar class="contempt"></div>
-            <md-card-title>Contempt: </md-card-title>
-            <md-card-subtitle>{{item.scores.contempt}} %</md-card-subtitle>
-          </md-card-header>
-          <md-card-content>
+        <md-list-item>
+          <md-icon md-list-icon class="contempt"></md-icon>
+          <h4 md-line>Contempt: </h4>
+          <p md-line>{{item.scores.contempt}} %
             <md-progress-bar mode="determinate" [value]="item.scores.contempt"></md-progress-bar>
-          </md-card-content>
-        </md-card>
+          </p>
+
+        </md-list-item>
         <br>
-        <md-card>
-          <md-card-header>
-            <div md-card-avatar class="disgust"></div>
-            <md-card-title>Disgust: </md-card-title>
-            <md-card-subtitle>{{item.scores.disgust}} %</md-card-subtitle>
-          </md-card-header>
-          <md-card-content>
+        <md-list-item>
+          <md-icon md-list-icon class="disgust"></md-icon>
+          <h4 md-line>Disgust: </h4>
+          <p md-line>{{item.scores.disgust}} %
             <md-progress-bar mode="determinate" [value]="item.scores.disgust"></md-progress-bar>
-          </md-card-content>
-        </md-card>
+          </p>
+
+        </md-list-item>
         <br>
-        <md-card>
-          <md-card-header>
-            <div md-card-avatar class="fear"></div>
-            <md-card-title>Fear: </md-card-title>
-            <md-card-subtitle>{{item.scores.fear}} %</md-card-subtitle>
-          </md-card-header>
-          <md-card-content>
+        <md-list-item>
+          <md-icon md-list-icon class="fear"></md-icon>
+          <h4 md-line>Fear: </h4>
+          <p md-line>{{item.scores.fear}} %
             <md-progress-bar mode="determinate" [value]="item.scores.fear"></md-progress-bar>
-          </md-card-content>
-        </md-card>
+          </p>
+
+        </md-list-item>
         <br>
-        <md-card>
-          <md-card-header>
-            <div md-card-avatar class="happiness"></div>
-            <md-card-title>Happiness: </md-card-title>
-            <md-card-subtitle>{{item.scores.happiness}} %</md-card-subtitle>
-          </md-card-header>
-          <md-card-content>
+        <md-list-item>
+          <md-icon md-list-icon class="happiness"></md-icon>
+          <h4 md-line>Happiness: </h4>
+          <p md-line>{{item.scores.happiness}} %
             <md-progress-bar mode="determinate" [value]="item.scores.happiness"></md-progress-bar>
-          </md-card-content>
-        </md-card>
+          </p>
+
+        </md-list-item>
         <br>
-        <md-card>
-          <md-card-header>
-            <div md-card-avatar class="neutral"></div>
-            <md-card-title>Neutral: </md-card-title>
-            <md-card-subtitle>{{item.scores.neutral}} %</md-card-subtitle>
-          </md-card-header>
-          <md-card-content>
+        <md-list-item>
+          <md-icon md-list-icon class="neutral"></md-icon>
+          <h4 md-line>Neutral: </h4>
+          <p md-line>{{item.scores.neutral}} %
             <md-progress-bar mode="determinate" [value]="item.scores.neutral"></md-progress-bar>
-          </md-card-content>
-        </md-card>
+          </p>
+
+        </md-list-item>
         <br>
-        <md-card>
-          <md-card-header>
-            <div md-card-avatar class="sadness"></div>
-            <md-card-title>Sadness: </md-card-title>
-            <md-card-subtitle>{{item.scores.sadness}} %</md-card-subtitle>
-          </md-card-header>
-          <md-card-content>
+        <md-list-item>
+          <md-icon md-list-icon class="sadness"></md-icon>
+          <h4 md-line>Sadness: </h4>
+          <p md-line>{{item.scores.sadness}} %
             <md-progress-bar mode="determinate" [value]="item.scores.sadness"></md-progress-bar>
-          </md-card-content>
-        </md-card>
+          </p>
+
+        </md-list-item>
         <br>
-        <md-card>
-          <md-card-header>
-            <div md-card-avatar class="surprise"></div>
-            <md-card-title>Surprise: </md-card-title>
-            <md-card-subtitle>{{item.scores.surprise}} %</md-card-subtitle>
-          </md-card-header>
-          <md-card-content>
+        <md-list-item>
+          <md-icon md-list-icon class="surprise"></md-icon>
+          <h4 md-line>Surprise: </h4>
+          <p md-line>{{item.scores.surprise}} %</p>
+          <p md-line>
             <md-progress-bar mode="determinate" [value]="item.scores.surprise"></md-progress-bar>
-          </md-card-content>
-        </md-card>
-        <br>
+          </p>
+
+        </md-list-item>
         <br>
         <hr>
-      </div>
-
-    </div>
-
-  </div>
+      </md-list>
+    </md-grid-tile>
+  </md-grid-list>
 </router-outlet>

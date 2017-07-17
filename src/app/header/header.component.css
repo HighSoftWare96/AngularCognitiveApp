@@ -1,14 +1,15 @@
 .header {
-    padding: 0px 150px 0px 0px;
+    margin: 0px, 0px, 0px, 0px;
     background: linear-gradient(to right, #185ab2 , #3b99ea); /* Standard syntax */
     height: 200px; 
     box-shadow: 2px 2px 14px black;
     text-align: right;
 }
+
 h1 {
-    
     font-size: 3em;
     color:white;
+    text-align: right;
 }
 p {
     color: white;

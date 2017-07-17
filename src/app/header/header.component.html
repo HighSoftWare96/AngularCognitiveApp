@@ -1,11 +1,15 @@
 <div class="header"><br>
-    <div class="row">
-        <div class="col-md-3">
+    <md-grid-list cols="12" rowHeight="85px">
+        <md-grid-tile colspan="3" rowspan="2">
             <img src="/assets/images/main.png" />
-        </div>
-        <div class="col-md-9">
-            <h1> {{title}} </h1>
-            <p>An Angular project created to exploit the <a href="https://azure.microsoft.com/en-us/try/cognitive-services/">Cognitive Services</a> offered by Microsoft </p>
-        </div>
-    </div>
+        </md-grid-tile>
+        <md-grid-tile class="title" colspan="9" rowspan="1">
+            <span style="position: absolute; right: 50px; height: 60px; top: 2px;">
+            <h1 md-line> {{title}} </h1><br>
+            </span>
+        </md-grid-tile>
+        <md-grid-tile colspan="9" rowspan="1">
+            <p md-line style="position: absolute; right: 50px;">An Angular project created to exploit the <a href="https://azure.microsoft.com/en-us/try/cognitive-services/">Cognitive Services</a>                offered by Microsoft </p>
+        </md-grid-tile>
+    </md-grid-list>
 </div>

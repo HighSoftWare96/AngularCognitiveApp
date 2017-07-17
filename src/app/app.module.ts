@@ -18,6 +18,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule } from "@angular/http";
 import {MdProgressSpinnerModule} from '@angular/material';
+import {MdGridListModule} from '@angular/material';
+import {MdListModule} from '@angular/material';
+import {MdSidenavModule} from '@angular/material';
 
 const appRoutes: Routes = [
   { path: '', component: EmotionRecAPIComponent },
@@ -49,6 +52,9 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     NoopAnimationsModule,
     HttpModule,
+    MdGridListModule,
+    MdListModule,
+    MdSidenavModule,        
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],
