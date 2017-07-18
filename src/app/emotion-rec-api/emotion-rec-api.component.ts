@@ -107,14 +107,11 @@ export class EmotionRecAPIComponent implements OnInit {
               this.emotions.push("Surprise");
             this.ImageResultArray.push(iR);
             this.drawRectangle(iR, this.ImageResultArray.length - 1);
-            this.loading = false;
           });
+          this.loading = false;
         },
         err => {
           console.log(err.json());
-          this.loading = false;
-        },
-        () => {
           this.loading = false;
         }
         );
