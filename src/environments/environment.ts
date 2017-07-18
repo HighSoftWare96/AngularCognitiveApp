@@ -4,5 +4,7 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  url_cognitive = "https://westus.api.cognitive.microsoft.com/emotion/v1.0/recognize",
+  subscription_key: 'ee7e4d6c84fe4be89220d3fb0c7c9999'
 };
