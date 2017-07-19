@@ -8,7 +8,7 @@ import { EmotionService } from '../emotion-service/emotion-service.service';
   selector: 'app-emotion-rec-api',
   templateUrl: './emotion-rec-api.component.html',
   styleUrls: ['./emotion-rec-api.component.css'],
-  providers: [EmotionService]
+  providers: [EmotionService],
 })
 export class EmotionRecAPIComponent implements OnInit {
 
@@ -35,7 +35,27 @@ export class EmotionRecAPIComponent implements OnInit {
     this.canvasVisibility = "visible";
     this.fileName = $event.target.files[0].name;
     this.emService.readNewByteImage($event.target);
-    this.emService.readNewBase64Image($event.target, this.imageCanvas, this.ctx);
+    this.readAndDrawImg($event.target);
+  }
+
+
+  public readAndDrawImg(inputValue: any): void {
+    // prendo il primo file che si è memorizzato nell'evento
+    const fileInput: File = inputValue.files[0];
+    const inputFromFile64: FileReader = new FileReader();
+
+    inputFromFile64.onloadend = function (e) {
+      this.rawFileDataCanvas = inputFromFile64.result;
+      const img = new Image();
+      img.src = this.rawFileDataCanvas;
+      img.onload = function (i) {
+        this.imageCanvas.nativeElement.width = img.width;
+        this.imageCanvas.nativeElement.height = img.height;
+        this.ctx.drawImage(img, 0, 0, img.width, img.height);
+      }.bind(this);
+    }.bind(this);
+
+    inputFromFile64.readAsDataURL(fileInput);
   }
 
   sendImage() {
@@ -44,13 +64,11 @@ export class EmotionRecAPIComponent implements OnInit {
     this.emotions = [];
     // sfrutto il servizio per richiedere i dati dal cognitive
     this.ImageResultArray = this.emService.sendRequestData();
-    this.loading = this.emService.busy();
     this.emotions = this.emService.getEmotions();
     // stampo il canvas
     this.ImageResultArray.forEach(function (item, index) {
       this.drawRectangle(item, index);
     }.bind(this));
-    this.loading = this.emService.busy();
   }
 
   private drawRectangle(iR: ResultData, index: number) {

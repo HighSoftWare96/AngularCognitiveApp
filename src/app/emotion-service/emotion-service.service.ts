@@ -14,7 +14,7 @@ export class EmotionService {
 
   constructor(private http: Http) { }
 
- public readNewByteImage(inputValue: any): void {
+  public readNewByteImage(inputValue: any): void {
     // prendo il primo file che si è memorizzato nell'evento
     const fileInput: File = inputValue.files[0];
     const inputFromFile: FileReader = new FileReader();
@@ -24,34 +24,15 @@ export class EmotionService {
     }.bind(this);
     inputFromFile.readAsArrayBuffer(fileInput);
   }
-  
-  public readNewBase64Image(inputValue: any,  imageCanvas : any, ctx: any): void {
-    // prendo il primo file che si è memorizzato nell'evento
-    const fileInput: File = inputValue.files[0];
-    const inputFromFile64: FileReader = new FileReader();
 
-    inputFromFile64.onloadend = function (e) {
-      this.rawFileDataCanvas = inputFromFile64.result;
-      const img = new Image();
-      img.src = this.rawFileDataCanvas;
-      img.onload = function (i) {
-        imageCanvas.nativeElement.width = img.width;
-        imageCanvas.nativeElement.height = img.height;
-        ctx.drawImage(img, 0, 0, img.width, img.height);
-      }.bind(this);
-    }.bind(this);
-
-    inputFromFile64.readAsDataURL(fileInput);
+  public busy(): boolean {
+    return this.loading
   }
-
-  public busy() : boolean{
-    return this.loading;
-  }
-  public getEmotions(){
+  public getEmotions(): String[] {
     return this.emotions;
   }
 
- public  sendRequestData() {
+  public sendRequestData(): ResultData[] {
     if (this.fileData != undefined) {
       this.emotions = [];
       this.loading = true;
