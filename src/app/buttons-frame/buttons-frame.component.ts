@@ -4,7 +4,7 @@ import { Location, LocationStrategy, PathLocationStrategy } from '@angular/commo
 import {MdButtonModule, MdCheckboxModule} from '@angular/material';
 
 @Component({
-  selector: 'buttons-frame',
+  selector: 'app-buttons-frame',
   templateUrl: './buttons-frame.component.html',
   styleUrls: ['./buttons-frame.component.css'],
 })
