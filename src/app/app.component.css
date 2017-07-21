@@ -1,9 +1,9 @@
 * {
     font-family: Myriad Pro, Arial, Helvetica, sans-serif;
 }
-h1 {
-    text-shadow: 2px 2px #333; 
-    font-family: 'Lemon/Milk', 'Helvetica', 'Arial', sans-serif;
-    font-size: 3.5em;
-    color:black;
+.container {
+  padding: 0px;
+  margin: 0px;
+  height: 100%;
+  width: 100%;
 }
