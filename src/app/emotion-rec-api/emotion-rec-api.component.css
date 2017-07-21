@@ -4,24 +4,20 @@ input[type="file"] {
 h2{
   color: white;
 }
-.em-container{
-  margin: auto;
-  text-align: center;
-  width: 90%;
-  box-shadow: 2px 2px 25px black;
-}
+
 #header {
   background-color: black;
-  padding: 10px, 10px;
+  border-radius: 5px 5px 0px 0px;
 }
 
 #commands {
   background-color: lightgray;
-  padding: 8px 0px 0px 0px;
+  padding: 12px 2px 12px 2px;
 }
 
 #results {
     background-color: #f2f2f2;
+    padding: 12px 22px 12px 22px;
 }
 .custom-file-upload {
     font-style: normal;

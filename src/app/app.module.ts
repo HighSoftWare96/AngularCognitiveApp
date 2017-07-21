@@ -6,7 +6,6 @@ import { HeaderComponent } from './header/header.component';
 import { ButtonsFrameComponent } from './buttons-frame/buttons-frame.component';
 import { RouterModule, Routes } from '@angular/router';
 import { EmotionRecAPIComponent } from './emotion-rec-api/emotion-rec-api.component';
-import { DialogComponent } from './emotion-rec-api/emotion-rec-api.component';
 import { Http, RequestOptionsArgs, Headers } from '@angular/http';
 import { FaceAPIComponent } from './face-api/face-api.component';
 import { MdButtonModule, MdCheckboxModule } from '@angular/material';
@@ -18,19 +17,18 @@ import { MdTooltipModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule } from '@angular/http';
-import { MdProgressSpinnerModule } from '@angular/material';
-import { MdGridListModule } from '@angular/material';
-import { MdListModule } from '@angular/material';
-import { MdSidenavModule } from '@angular/material';
-import { MdToolbarModule } from '@angular/material';
-import { MdDialogModule } from '@angular/material';
-import { MdTabsModule } from '@angular/material';
+import {MdProgressSpinnerModule} from '@angular/material';
+import {MdGridListModule} from '@angular/material';
+import {MdListModule} from '@angular/material';
+import {MdSidenavModule} from '@angular/material';
+import {MdToolbarModule} from '@angular/material';
 
 const appRoutes: Routes = [
   { path: '', component: EmotionRecAPIComponent },
   { path: 'emotionAPI', component: EmotionRecAPIComponent },
   { path: 'faceAPI', component: FaceAPIComponent },
-  { path: '*', component: EmotionRecAPIComponent }
+  // { path: 'faceAPI', component: FaceAPIComponent },
+  // { path: 'faceAPI', component: FaceAPIComponent },
 ];
 
 @NgModule({
@@ -40,7 +38,7 @@ const appRoutes: Routes = [
     ButtonsFrameComponent,
     EmotionRecAPIComponent,
     FaceAPIComponent,
-    DialogComponent
+
   ],
   imports: [
     BrowserModule,
@@ -57,16 +55,11 @@ const appRoutes: Routes = [
     HttpModule,
     MdGridListModule,
     MdListModule,
-    MdTabsModule,
-    MdDialogModule,
     MdSidenavModule,
     MdToolbarModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],
-  bootstrap: [AppComponent],
-  entryComponents: [
-    DialogComponent
-  ]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
