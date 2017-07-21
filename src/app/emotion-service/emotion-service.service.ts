@@ -1,12 +1,13 @@
+import { ResultData } from './../definitions';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { ResultData } from '../definitions';
 import { Http, RequestOptionsArgs, Headers } from '@angular/http';
+import 'rxjs/Rx';
+import { Observable } from "rxjs/Observable";
 
 @Injectable()
 export class EmotionService {
 
-  public loading: boolean = false;
   public ImageResultArray: ResultData[] = [];
   private fileData: any = undefined;
   public emotions: String[] = [];
@@ -25,66 +26,54 @@ export class EmotionService {
     inputFromFile.readAsArrayBuffer(fileInput);
   }
 
-  public busy(): boolean {
-    return this.loading
-  }
-  public getEmotions(): String[] {
-    return this.emotions;
-  }
 
-  public sendRequestData(): ResultData[] {
+  public sendRequestData(): Observable<ResultData[]> {
     if (this.fileData != undefined) {
       this.emotions = [];
-      this.loading = true;
       let url = environment.url_cognitive;
       let h = new Headers();
       h.append('Ocp-Apim-Subscription-Key', environment.subscription_key);
       h.append('Content-Type', 'application/octet-stream');
-      this.http.post(url, this.fileData, { headers: h })
-        .subscribe(
-        res => {
+
+      return this.http.post(url, this.fileData, { headers: h })
+        .map(res => {
           this.ImageResultArray = [];
-          let result = res.json();
+          const result: ResultData[] = res.json();
           result.forEach(iR => {
-            iR.scores.anger = this.getPercentageValues(iR.scores.anger);
-            if (iR.scores.anger > 65)
-              this.emotions.push("Anger");
-            iR.scores.contempt = this.getPercentageValues(iR.scores.contempt);
-            if (iR.scores.contempt > 65)
-              this.emotions.push("Contempt");
-            iR.scores.disgust = this.getPercentageValues(iR.scores.disgust);
-            if (iR.scores.disgust > 65)
-              this.emotions.push("Disgust");
-            iR.scores.fear = this.getPercentageValues(iR.scores.fear);
-            if (iR.scores.fear > 65)
-              this.emotions.push("Fear");
-            iR.scores.happiness = this.getPercentageValues(iR.scores.happiness);
-            if (iR.scores.happiness > 65)
-              this.emotions.push("Happiness");
-            iR.scores.neutral = this.getPercentageValues(iR.scores.neutral);
-            if (iR.scores.neutral > 65)
-              this.emotions.push("Neutral");
-            iR.scores.sadness = this.getPercentageValues(iR.scores.sadness);
-            if (iR.scores.sadness > 65)
-              this.emotions.push("Sadness");
-            iR.scores.surprise = this.getPercentageValues(iR.scores.surprise);
-            if (iR.scores.surprise > 65)
-              this.emotions.push("Surprise");
+            if ((iR.scores.anger = this.getPercentageValues(iR.scores.anger)) > 0) {
+              this.emotions.push('Anger');
+            }
+            if ((iR.scores.contempt = this.getPercentageValues(iR.scores.contempt)) > 0) {
+              this.emotions.push('Contempt');
+            }
+            if ((iR.scores.disgust = this.getPercentageValues(iR.scores.disgust)) > 0) {
+              this.emotions.push('Disgust');
+            }
+            if ((iR.scores.fear = this.getPercentageValues(iR.scores.fear)) > 0) {
+              this.emotions.push('Fear');
+            }
+            if ((iR.scores.happiness = this.getPercentageValues(iR.scores.happiness)) > 0) {
+              this.emotions.push('Happiness');
+            }
+            if ((iR.scores.neutral = this.getPercentageValues(iR.scores.neutral)) > 0) {
+              this.emotions.push('Neutral');
+            }
+            if ((iR.scores.sadness = this.getPercentageValues(iR.scores.sadness)) > 0) {
+              this.emotions.push('Sadness');
+            }
+            if ((iR.scores.surprise = this.getPercentageValues(iR.scores.surprise)) > 0) {
+              this.emotions.push('Surprise');
+            }
             this.ImageResultArray.push(iR);
           });
-          this.loading = false;
-        },
-        err => {
-          console.log(err.json());
-          this.loading = false;
-        }
-        );
-      return this.ImageResultArray;
+
+          return this.ImageResultArray;
+        });
     }
   }
 
   private getPercentageValues(value: number): number {
-    if (value < 0.01)
+    if (value < 0.65)
       return 0;
     return value * 100;
   }

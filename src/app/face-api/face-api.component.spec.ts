@@ -1,8 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { FaceAPIComponent } from './face-api.component';
 
-describe('FaceAPIComponent', () => {
+describe('FaceAPIComponent', () => {
   let component: FaceAPIComponent;
   let fixture: ComponentFixture<FaceAPIComponent>;
 

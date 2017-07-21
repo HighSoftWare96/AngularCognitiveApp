@@ -6,14 +6,14 @@ export class FaceRectangle {
 }
 
 export class Scores {
-    anger: number = 0;
-    contempt: number = 0;
-    disgust: number = 0;
-    fear: number = 0;
-    happiness: number = 0;
-    neutral: number = 0;
-    sadness: number = 0;
-    surprise: number = 0;
+    anger = 0;
+    contempt = 0;
+    disgust = 0;
+    fear = 0;
+    happiness = 0;
+    neutral = 0;
+    sadness = 0;
+    surprise = 0;
 }
 
 export class ResultData {

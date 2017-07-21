@@ -15,24 +15,22 @@ export class EmotionRecAPIComponent implements OnInit {
   @ViewChild('fileInput') fileInput;
   @ViewChild('imagePlaceholder') imageCanvas: any;
 
-  public loading: boolean = false;
-  public ImageResultArray: ResultData[] = [];
+  public loading = false;
   public fileName: String;
   private fileData: any = undefined;
-  public emotions: String[] = [];
   private rawFileDataCanvas: String;
   private ctx: any;
-  public canvasVisibility: String = "hidden";
+  public canvasVisibility: String = 'hidden';
 
 
-  constructor(private emService: EmotionService) { }
+  constructor(public emService: EmotionService) { }
 
   ngOnInit() {
     this.ctx = this.imageCanvas.nativeElement.getContext('2d');
   }
 
   addedImage($event): void {
-    this.canvasVisibility = "visible";
+    this.canvasVisibility = 'visible';
     this.fileName = $event.target.files[0].name;
     this.emService.readNewByteImage($event.target);
     this.readAndDrawImg($event.target);
@@ -60,15 +58,15 @@ export class EmotionRecAPIComponent implements OnInit {
 
   sendImage() {
     // pulisco eventuali risultati precedenti
-    this.ImageResultArray = [];
-    this.emotions = [];
     // sfrutto il servizio per richiedere i dati dal cognitive
-    this.ImageResultArray = this.emService.sendRequestData();
-    this.emotions = this.emService.getEmotions();
+    this.loading = true;
+    this.emService.sendRequestData().subscribe(item => {
+      item.forEach(function (element, index) {
+        this.drawRectangle(element, index);
+      }.bind(this));
+      this.loading = false;
+    });
     // stampo il canvas
-    this.ImageResultArray.forEach(function (item, index) {
-      this.drawRectangle(item, index);
-    }.bind(this));
   }
 
   private drawRectangle(iR: ResultData, index: number) {
@@ -77,9 +75,9 @@ export class EmotionRecAPIComponent implements OnInit {
     this.ctx.lineWidth = '2';
     this.ctx.rect(iR.faceRectangle.left, iR.faceRectangle.top, iR.faceRectangle.width, iR.faceRectangle.height);
     this.ctx.stroke();
-    this.ctx.font = "20px Myriad Pro";
-    this.ctx.fillStyle = "red";
-    this.ctx.fillText("Individual n." + index, iR.faceRectangle.left, iR.faceRectangle.top);
+    this.ctx.font = '20px Myriad Pro';
+    this.ctx.fillStyle = 'red';
+    this.ctx.fillText('Individual n.' + index, iR.faceRectangle.left, iR.faceRectangle.top);
   }
 
   private clearCanvas() {
