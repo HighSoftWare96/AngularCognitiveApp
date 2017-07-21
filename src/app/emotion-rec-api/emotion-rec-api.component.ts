@@ -1,8 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { ResultData } from '../definitions';
 import { Http, RequestOptionsArgs, Headers } from '@angular/http';
 import { environment } from '../../environments/environment';
 import { EmotionService } from '../emotion-service/emotion-service.service';
+import { MdDialog } from '@angular/material';
+import { MD_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-emotion-rec-api',
@@ -16,17 +18,21 @@ export class EmotionRecAPIComponent implements OnInit {
   @ViewChild('imagePlaceholder') imageCanvas: any;
 
   public loading = false;
-  public fileName: String;
-  private fileData: any = undefined;
-  private rawFileDataCanvas: String;
+  public fileName: String = undefined;
   private ctx: any;
   public canvasVisibility: String = 'hidden';
 
 
-  constructor(public emService: EmotionService) { }
+  constructor(public emService: EmotionService, public dialog: MdDialog) { }
 
   ngOnInit() {
     this.ctx = this.imageCanvas.nativeElement.getContext('2d');
+  }
+
+  openDialog(error: String) {
+    this.dialog.open(DialogComponent, {
+      data: error,
+    });
   }
 
   addedImage($event): void {
@@ -57,16 +63,25 @@ export class EmotionRecAPIComponent implements OnInit {
   }
 
   sendImage() {
-    // pulisco eventuali risultati precedenti
-    // sfrutto il servizio per richiedere i dati dal cognitive
-    this.loading = true;
-    this.emService.sendRequestData().subscribe(item => {
-      item.forEach(function (element, index) {
-        this.drawRectangle(element, index);
-      }.bind(this));
+    if (this.fileName !== undefined) {
+      // sfrutto il servizio per richiedere i dati dal cognitive
+      this.loading = true;
+      this.emService.sendRequestData().subscribe(item => {
+        item.forEach(function (element, index) {
+          this.drawRectangle(element, index);
+        }.bind(this),
+          this.loading = false
+        );
+      },
+        error => {
+          this.loading = false;
+          this.openDialog(error.statusText);
+        }
+      );
+    } else {
       this.loading = false;
-    });
-    // stampo il canvas
+      this.openDialog('No images loaded!');
+    }
   }
 
   private drawRectangle(iR: ResultData, index: number) {
@@ -82,6 +97,16 @@ export class EmotionRecAPIComponent implements OnInit {
 
   private clearCanvas() {
     this.ctx.clearRect(0, 0, this.imageCanvas.width, this.imageCanvas.height);
+  }
+}
+
+@Component({
+  selector: 'app-dialog',
+  templateUrl: 'dialog.html',
+})
+export class DialogComponent {
+  constructor( @Inject(MD_DIALOG_DATA) public data: any) {
+
   }
 }
 
