@@ -4,23 +4,23 @@
   <div class="em-container">
     <md-grid-list cols="1" rowHeight="50px" id="header">
       <md-grid-tile>
-        <md-icon style="color: white;">remove_red_eye</md-icon>&nbsp;&nbsp;&nbsp;
+        <md-icon class="text-light">remove_red_eye</md-icon>&nbsp;&nbsp;&nbsp;
         <h2>Emotion Recognition API</h2>
       </md-grid-tile>
     </md-grid-list>
     <md-grid-list cols="2" rowHeight="20px" id="commands">
       <md-grid-tile style="text-align: left;" rowspan="3">
-        <input id="fileToUpload" type="file" style="display:none;" #fileInput (change)="addedImage($event)">
+        <input type="file" style="display:none;" #fileInput (change)="addedImage($event)">
         <button md-raised-button type="button" (click)="fileInput.click()">
           <label for="fileToUpload">Upload an image</label>
         </button>
-        <p style="color: black;"> &nbsp;&nbsp;&nbsp;{{this.fileName}}</p>
+        <p class="file-name">{{this.fileName}}</p>
       </md-grid-tile>
       <md-grid-tile style="text-align: right;" rowspan="3">
         <button md-raised-button type="button" (click)="sendImage()"><md-icon style="color: white;">check</md-icon> <b style="color:white;">Send request</b></button>
       </md-grid-tile>
       <md-grid-tile *ngIf="this.loading" colspan="2" rowspan="1">
-        <md-progress-bar mode="query"></md-progress-bar>
+        <md-progress-bar mode="query" color="accent"></md-progress-bar>
       </md-grid-tile>
     </md-grid-list>
     <md-grid-list cols="2" rowHeight="50px">
@@ -39,7 +39,7 @@
                 <md-icon md-list-icon class="anger"></md-icon>
                 <h4 md-line>Anger: </h4>
                 <p md-line>{{item.scores.anger}} %
-                  <md-progress-bar mode="determinate" [value]="item.scores.anger"></md-progress-bar>
+                  <md-progress-bar mode="determinate" [value]="item.scores.anger" color="warn"></md-progress-bar>
                 </p>
               </md-list-item>
               <br>
@@ -47,7 +47,7 @@
                 <md-icon md-list-icon class="contempt"></md-icon>
                 <h4 md-line>Contempt: </h4>
                 <p md-line>{{item.scores.contempt}} %
-                  <md-progress-bar mode="determinate" [value]="item.scores.contempt"></md-progress-bar>
+                  <md-progress-bar mode="determinate"  color="warn" [value]="item.scores.contempt"></md-progress-bar>
                 </p>
 
               </md-list-item>
@@ -56,7 +56,7 @@
                 <md-icon md-list-icon class="disgust"></md-icon>
                 <h4 md-line>Disgust: </h4>
                 <p md-line>{{item.scores.disgust}} %
-                  <md-progress-bar mode="determinate" [value]="item.scores.disgust"></md-progress-bar>
+                  <md-progress-bar mode="determinate" [value]="item.scores.disgust" color="warn"></md-progress-bar>
                 </p>
 
               </md-list-item>
@@ -65,7 +65,7 @@
                 <md-icon md-list-icon class="fear"></md-icon>
                 <h4 md-line>Fear: </h4>
                 <p md-line>{{item.scores.fear}} %
-                  <md-progress-bar mode="determinate" [value]="item.scores.fear"></md-progress-bar>
+                  <md-progress-bar mode="determinate" [value]="item.scores.fear"  color="warn"></md-progress-bar>
                 </p>
 
               </md-list-item>
@@ -74,7 +74,7 @@
                 <md-icon md-list-icon class="happiness"></md-icon>
                 <h4 md-line>Happiness: </h4>
                 <p md-line>{{item.scores.happiness}} %
-                  <md-progress-bar mode="determinate" [value]="item.scores.happiness"></md-progress-bar>
+                  <md-progress-bar mode="determinate" [value]="item.scores.happiness"  color="warn"></md-progress-bar>
                 </p>
 
               </md-list-item>
@@ -83,7 +83,7 @@
                 <md-icon md-list-icon class="neutral"></md-icon>
                 <h4 md-line>Neutral: </h4>
                 <p md-line>{{item.scores.neutral}} %
-                  <md-progress-bar mode="determinate" [value]="item.scores.neutral"></md-progress-bar>
+                  <md-progress-bar mode="determinate" [value]="item.scores.neutral"  color="warn"></md-progress-bar>
                 </p>
 
               </md-list-item>
@@ -92,7 +92,7 @@
                 <md-icon md-list-icon class="sadness"></md-icon>
                 <h4 md-line>Sadness: </h4>
                 <p md-line>{{item.scores.sadness}} %
-                  <md-progress-bar mode="determinate" [value]="item.scores.sadness"></md-progress-bar>
+                  <md-progress-bar mode="determinate" [value]="item.scores.sadness"  color="warn"></md-progress-bar>
                 </p>
 
               </md-list-item>
@@ -102,7 +102,7 @@
                 <h4 md-line>Surprise: </h4>
                 <p md-line>{{item.scores.surprise}} %</p>
                 <p md-line>
-                  <md-progress-bar mode="determinate" [value]="item.scores.surprise"></md-progress-bar>
+                  <md-progress-bar mode="determinate" [value]="item.scores.surprise"  color="warn"></md-progress-bar>
                 </p>
 
               </md-list-item>

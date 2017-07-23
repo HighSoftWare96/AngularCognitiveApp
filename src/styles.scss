@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700');
-@import '~@angular/material/prebuilt-themes/purple-green.css';
+@import '~@angular/material/prebuilt-themes/pink-bluegrey.css';
 @import '/styles/var';
 
 html, body {
@@ -28,4 +28,12 @@ md-sidenav-container {
 
 .text-center {
   text-align: center;
+}
+
+.text-light {
+  color: $colore-chiaro;
+}
+
+.text-dark {
+ color: $colore-scuro;
 }

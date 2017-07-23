@@ -8,7 +8,10 @@ h2{
   margin: auto;
   text-align: center;
   width: 90%;
-  box-shadow: 2px 2px 25px black;
+}
+.file-name {
+  color: black;
+  padding-left: 10px;
 }
 #header {
   background-color: black;
