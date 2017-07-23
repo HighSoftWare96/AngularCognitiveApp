@@ -98,6 +98,14 @@ export class EmotionRecAPIComponent implements OnInit {
   private clearCanvas() {
     this.ctx.clearRect(0, 0, this.imageCanvas.width, this.imageCanvas.height);
   }
+
+  public microsoftLink() {
+    window.open('https://azure.microsoft.com/en-us/services/cognitive-services/emotion/', '_blank');
+  }
+
+  public docLink() {
+    window.open('https://docs.microsoft.com/en-us/azure/cognitive-services/emotion/quickstarts/javascript', '_blank');
+  }
 }
 
 @Component({

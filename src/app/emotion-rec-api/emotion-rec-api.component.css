@@ -13,6 +13,10 @@ h2{
   color: black;
   padding-left: 10px;
 }
+.cart-content {
+  text-shadow: 2px 2px 10px black;
+  font-size: 1.2em;
+}
 #header {
   background-color: black;
   padding: 10px, 10px;
