@@ -11,9 +11,9 @@
     <md-grid-list cols="2" rowHeight="20px" id="commands">
       <md-grid-tile style="text-align: left;" rowspan="3">
         <input id="fileToUpload" type="file" style="display:none;" #fileInput (change)="addedImage($event)">
-        <button md-raised-button type="button" onclick="document.getElementById('fileToUpload').click()">
-      <label for="fileToUpload">Upload an image</label>
-      </button>
+        <button md-raised-button type="button" (click)="fileInput.click()">
+          <label for="fileToUpload">Upload an image</label>
+        </button>
         <p style="color: black;"> &nbsp;&nbsp;&nbsp;{{this.fileName}}</p>
       </md-grid-tile>
       <md-grid-tile style="text-align: right;" rowspan="3">
