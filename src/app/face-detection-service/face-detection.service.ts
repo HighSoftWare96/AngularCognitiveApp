@@ -32,12 +32,13 @@ export class FaceDetectionService {
       const url = environment.url_face;
       const h = new Headers();
       h.append('Ocp-Apim-Subscription-Key', environment.subscription_key_face);
-      h.append('Content-Type', 'application/json');
+      h.append('Content-Type', 'application/octet-stream');
 
       return this.http.post(url, this.fileData, { headers: h })
         .map(res => {
             this.ImageResultArray = [];
             const result: FaceDetectionData[] = res.json();
+            console.dir(result[0]);
             return this.ImageResultArray;
         });
     }
