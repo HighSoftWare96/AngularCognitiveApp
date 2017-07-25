@@ -32,92 +32,35 @@
       <md-progress-bar mode="query" color="accent"></md-progress-bar>
     </md-grid-tile>
   </md-grid-list>
-  <md-grid-list cols="2" rowHeight="50px">
-    <md-grid-tile [style.visibility]="this.canvasVisibility" colspan="1" rowspan="18">
-      <canvas #imagePlaceholder></canvas>
-    </md-grid-tile>
-    <md-grid-tile *ngIf="this.faceDService.emotions.length > 0" style="font-size: 1.2em;" rowspan="1">
-      <p><br>Possible emotions: <b *ngFor="let item of this.faceDService.emotions">{{item}} </b> </p>
-    </md-grid-tile>
-    <md-grid-tile colspan="1" rowspan="16">
-      <md-tab-group>
-        <md-tab label="Individual n.{{this.faceDService.ImageResultArray.indexOf(item)}}" *ngFor="let item of this.faceDService.ImageResultArray"
-          rowspan="8" style="padding: 100px;">
+  <br>
+  <canvas [style.visibility]="this.canvasVisibility" #imagePlaceholder></canvas>
+  <br>
+  <br>
+  <md-grid-list *ngIf="this.canvasVisibility" cols="2" rowHeight="400px">
+    <md-grid-tile *ngFor="let item of this.faceDService.ImageResultArray">
+      <md-card>
+        <md-card-title>Individual n.{{this.faceDService.ImageResultArray.indexOf(item)}}</md-card-title>
+        <md-card-content>
           <md-list>
             <md-list-item>
-              <md-icon md-list-icon class="anger"></md-icon>
-              <h4 md-line>Anger: </h4>
-              <p md-line>{{item.scores.anger}} %
-                <md-progress-bar mode="determinate" [value]="item.scores.anger" color="warn"></md-progress-bar>
-              </p>
-            </md-list-item>
-            <br>
+              <md-icon md-list-icon>contacts</md-icon> Age: {{item.faceAttributes.age}}</md-list-item>
             <md-list-item>
-              <md-icon md-list-icon class="contempt"></md-icon>
-              <h4 md-line>Contempt: </h4>
-              <p md-line>{{item.scores.contempt}} %
-                <md-progress-bar mode="determinate" color="warn" [value]="item.scores.contempt"></md-progress-bar>
-              </p>
-
-            </md-list-item>
-            <br>
+              <md-icon md-list-icon>wc</md-icon> Gender: {{item.faceAttributes.gender}}</md-list-item>
             <md-list-item>
-              <md-icon md-list-icon class="disgust"></md-icon>
-              <h4 md-line>Disgust: </h4>
-              <p md-line>{{item.scores.disgust}} %
-                <md-progress-bar mode="determinate" [value]="item.scores.disgust" color="warn"></md-progress-bar>
-              </p>
-
-            </md-list-item>
-            <br>
+              <md-icon md-list-icon>insert_emoticon</md-icon> Smiling: {{item.faceAttributes.smile}}</md-list-item>
             <md-list-item>
-              <md-icon md-list-icon class="fear"></md-icon>
-              <h4 md-line>Fear: </h4>
-              <p md-line>{{item.scores.fear}} %
-                <md-progress-bar mode="determinate" [value]="item.scores.fear" color="warn"></md-progress-bar>
-              </p>
-
+              <md-icon md-list-icon>visibility</md-icon> Glasses: {{item.faceAttributes.glasses}}</md-list-item>
+            <md-list-item> Bald: {{item.faceAttributes.hair.bald}}, Hair color: {{item.faceAttributes.hair.colorDetected}}, Invisible:
+              {{item.faceAttributes.hair.invisible}}
             </md-list-item>
-            <br>
-            <md-list-item>
-              <md-icon md-list-icon class="happiness"></md-icon>
-              <h4 md-line>Happiness: </h4>
-              <p md-line>{{item.scores.happiness}} %
-                <md-progress-bar mode="determinate" [value]="item.scores.happiness" color="warn"></md-progress-bar>
-              </p>
-
-            </md-list-item>
-            <br>
-            <md-list-item>
-              <md-icon md-list-icon class="neutral"></md-icon>
-              <h4 md-line>Neutral: </h4>
-              <p md-line>{{item.scores.neutral}} %
-                <md-progress-bar mode="determinate" [value]="item.scores.neutral" color="warn"></md-progress-bar>
-              </p>
-
-            </md-list-item>
-            <br>
-            <md-list-item>
-              <md-icon md-list-icon class="sadness"></md-icon>
-              <h4 md-line>Sadness: </h4>
-              <p md-line>{{item.scores.sadness}} %
-                <md-progress-bar mode="determinate" [value]="item.scores.sadness" color="warn"></md-progress-bar>
-              </p>
-
-            </md-list-item>
-            <br>
-            <md-list-item>
-              <md-icon md-list-icon class="surprise"></md-icon>
-              <h4 md-line>Surprise: </h4>
-              <p md-line>{{item.scores.surprise}} %</p>
-              <p md-line>
-                <md-progress-bar mode="determinate" [value]="item.scores.surprise" color="warn"></md-progress-bar>
-              </p>
-
+            <md-list-item> Beard: {{item.faceAttributes.facialHair.beard}}, Moustache: {{item.faceAttributes.facialHair.moustache}}, Sideburns:
+              {{item.faceAttributes.facialHair.sideburns}}
             </md-list-item>
           </md-list>
-        </md-tab>
-      </md-tab-group>
+        </md-card-content>
+      </md-card>
     </md-grid-tile>
   </md-grid-list>
+  <br>
+  <br>
 </div>

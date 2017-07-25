@@ -14,6 +14,9 @@ export class FaceDetectionService {
 
   constructor(private http: Http) { }
 
+  public clearResults() {
+    this.ImageResultArray = [];
+  }
 
   public readNewByteImage(inputValue: any): void {
     // prendo il primo file che si è memorizzato nell'evento
@@ -26,7 +29,7 @@ export class FaceDetectionService {
     inputFromFile.readAsArrayBuffer(fileInput);
   }
 
-   public sendRequestData(): Observable<FaceDetectionData[]> {
+  public sendRequestData(): Observable<FaceDetectionData[]> {
     if (this.fileData !== undefined) {
       this.emotions = [];
       const url = environment.url_face;
@@ -36,10 +39,17 @@ export class FaceDetectionService {
 
       return this.http.post(url, this.fileData, { headers: h })
         .map(res => {
-            this.ImageResultArray = [];
-            const result: FaceDetectionData[] = res.json();
-            console.dir(result[0]);
-            return this.ImageResultArray;
+          this.ImageResultArray = [];
+          this.ImageResultArray = res.json();
+          this.ImageResultArray.forEach(function(item){
+            item.faceAttributes.hair.hairColor.forEach(function(colorItem){
+              if (colorItem.confidence > 0.6) {
+                item.faceAttributes.hair.colorDetected = colorItem.color;
+              }
+            });
+          });
+          console.dir(this.ImageResultArray);
+          return this.ImageResultArray;
         });
     }
   }

@@ -1,3 +1,4 @@
+import { CognitiveServices } from './../buttons-frame/buttons-frame.component';
 import { FaceDetectionData } from './../definitions/FaceDetectionDefine';
 import { FaceDetectionService } from './../face-detection-service/face-detection.service';
 import { Component, OnInit, Inject, ViewChild } from '@angular/core';
@@ -47,6 +48,7 @@ export class FaceAPIComponent implements OnInit {
 
 
   public readAndDrawImg(inputValue: any): void {
+    this.faceDService.clearResults();
     // prendo il primo file che si è memorizzato nell'evento
     const fileInput: File = inputValue.files[0];
     const inputFromFile64: FileReader = new FileReader();
@@ -71,6 +73,7 @@ export class FaceAPIComponent implements OnInit {
       this.loading = true;
       this.faceDService.sendRequestData().subscribe(item => {
         item.forEach(function (element, index) {
+          console.dir(item);
           this.drawRectangle(element, index);
         }.bind(this),
           this.loading = false
