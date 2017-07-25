@@ -1,4 +1,4 @@
-import { ResultData } from './../definitions';
+import { ResultData } from './../definitions/EmotionDefine';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Http, RequestOptionsArgs, Headers } from '@angular/http';

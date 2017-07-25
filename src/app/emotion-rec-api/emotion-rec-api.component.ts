@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject, ViewChild } from '@angular/core';
-import { ResultData } from '../definitions';
+import { ResultData } from '../definitions/EmotionDefine';
 import { Http, RequestOptionsArgs, Headers } from '@angular/http';
 import { environment } from '../../environments/environment';
 import { EmotionService } from '../emotion-service/emotion-service.service';
@@ -112,6 +112,7 @@ export class EmotionRecAPIComponent implements OnInit {
   selector: 'app-dialog',
   templateUrl: 'dialog.html',
 })
+
 export class DialogComponent {
   constructor( @Inject(MD_DIALOG_DATA) public data: any) {
 
