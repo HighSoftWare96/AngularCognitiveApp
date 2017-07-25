@@ -1,3 +1,4 @@
+import { FaceDetectionData } from './../definitions/FaceDetectionDefine';
 import { FaceDetectionService } from './../face-detection-service/face-detection.service';
 import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { ResultData } from '../definitions/EmotionDefine';
@@ -94,4 +95,14 @@ export class FaceAPIComponent implements OnInit {
     window.open('https://docs.microsoft.com/en-us/azure/cognitive-services/face/quickstarts/javascript', '_blank');
   }
 
+  private drawRectangle(iR: FaceDetectionData, index: number) {
+    this.ctx.beginPath();
+    this.ctx.strokeStyle = 'red';
+    this.ctx.lineWidth = '2';
+    this.ctx.rect(iR.faceRectangle.left, iR.faceRectangle.top, iR.faceRectangle.width, iR.faceRectangle.height);
+    this.ctx.stroke();
+    this.ctx.font = '20px Myriad Pro';
+    this.ctx.fillStyle = 'red';
+    this.ctx.fillText('Individual n.' + index, iR.faceRectangle.left, iR.faceRectangle.top);
+  }
 }
