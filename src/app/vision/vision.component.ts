@@ -14,11 +14,11 @@ import { VisionData } from './../definitions/VisionDefine';
 })
 export class VisionComponent implements OnInit {
   public loading = false;
-  public images: ImageView[] = [new ImageView('/assets/images/gallery_visio/1.jpg', '/assets/images/gallery_visio/min/1.jpg', false),
-  new ImageView('/assets/images/gallery_visio/2.jpg', '/assets/images/gallery_visio/min/2.jpg', false),
-  new ImageView('/assets/images/gallery_visio/3.jpg', '/assets/images/gallery_visio/min/3.jpg', false),
-  new ImageView('/assets/images/gallery_visio/4.jpg', '/assets/images/gallery_visio/min/4.jpg', false),
-  new ImageView('/assets/images/gallery_visio/5.jpg', '/assets/images/gallery_visio/min/5.jpg', false)];
+  public images: ImageView[] = [new ImageView('https://raw.githubusercontent.com/HighSoftWare96/AngularCognitiveApp/master/src/assets/images/gallery_visio/1.jpg', 'https://raw.githubusercontent.com/HighSoftWare96/AngularCognitiveApp/master/src/assets/images/gallery_visio/min/1.jpg', false),
+  new ImageView('https://raw.githubusercontent.com/HighSoftWare96/AngularCognitiveApp/master/src/assets/images/gallery_visio/2.jpg', 'https://raw.githubusercontent.com/HighSoftWare96/AngularCognitiveApp/master/src/assets/images/gallery_visio/min/2.jpg', false),
+  new ImageView('https://raw.githubusercontent.com/HighSoftWare96/AngularCognitiveApp/master/src/assets/images/gallery_visio/3.jpg', 'https://raw.githubusercontent.com/HighSoftWare96/AngularCognitiveApp/master/src/assets/images/gallery_visio/min/3.jpg', false),
+  new ImageView('https://raw.githubusercontent.com/HighSoftWare96/AngularCognitiveApp/master/src/assets/images/gallery_visio/4.jpg', 'https://raw.githubusercontent.com/HighSoftWare96/AngularCognitiveApp/master/src/assets/images/gallery_visio/min/4.jpg', false),
+  new ImageView('https://raw.githubusercontent.com/HighSoftWare96/AngularCognitiveApp/master/src/assets/images/gallery_visio/5.jpg', 'https://raw.githubusercontent.com/HighSoftWare96/AngularCognitiveApp/master/src/assets/images/gallery_visio/min/5.jpg', false)];
   public selectedImage: ImageView = undefined;
 
   constructor(public visionService: VisionService, public dialog: MdDialog) { }

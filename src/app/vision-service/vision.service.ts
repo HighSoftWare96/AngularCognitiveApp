@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Rx';
 import { VisionData } from './../definitions/VisionDefine';
 import { Injectable } from '@angular/core';
 import { Http, RequestOptionsArgs, Headers } from '@angular/http';
-import { UrlResolver } from '@angular/compiler';
+import { Location } from '@angular/common';
 
 @Injectable()
 export class VisionService {
@@ -11,17 +11,15 @@ export class VisionService {
   private fileData: any = undefined;
   public results: VisionData = undefined;
 
-  constructor(private http: Http, private urlResolver: UrlResolver) { }
+  constructor(private location: Location, private http: Http) { }
 
   public sendRequestData(path: string): Observable<VisionData> {
     const url = environment.url_vision;
     const h = new Headers();
     h.append('Ocp-Apim-Subscription-Key', environment.subscription_key_vision);
-    h.append('Content-Type', 'application/octet-stream');
-    const internal_url = {
-      url: this.urlResolver.resolve(module.id, path)
-    };
-    return this.http.post(url, JSON.stringify(internal_url), { headers: h })
+
+    console.log(path);
+    return this.http.post(url, { url: path }, { headers: h })
       .map(res => {
         this.results = res.json();
         console.dir(this.results);

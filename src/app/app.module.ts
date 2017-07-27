@@ -26,7 +26,6 @@ import { MdToolbarModule } from '@angular/material';
 import { MdDialogModule } from '@angular/material';
 import { MdTabsModule } from '@angular/material';
 import { VisionComponent } from './vision/vision.component';
-import { UrlResolver } from '@angular/compiler';
 
 const appRoutes: Routes = [
   { path: '', component: EmotionRecAPIComponent },
@@ -68,7 +67,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes)
   ],
   providers: [{ provide: MD_DIALOG_DATA, useValue: {} },
-  { provide: MdDialogRef, useValue: {} }, UrlResolver],
+  { provide: MdDialogRef, useValue: {} }],
   bootstrap: [AppComponent],
   entryComponents: [
     DialogComponent
