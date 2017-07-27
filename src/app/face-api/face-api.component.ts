@@ -4,7 +4,6 @@ import { FaceDetectionService } from './../face-detection-service/face-detection
 import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { ResultData } from '../definitions/EmotionDefine';
 import { Http, RequestOptionsArgs, Headers } from '@angular/http';
-import { environment } from '../../environments/environment';
 import { MdDialog } from '@angular/material';
 import { MD_DIALOG_DATA } from '@angular/material';
 import { DialogComponent } from '../emotion-rec-api/emotion-rec-api.component';

@@ -25,11 +25,14 @@ import { MdSidenavModule } from '@angular/material';
 import { MdToolbarModule } from '@angular/material';
 import { MdDialogModule } from '@angular/material';
 import { MdTabsModule } from '@angular/material';
+import { VisionComponent } from './vision/vision.component';
+
 
 const appRoutes: Routes = [
   { path: '', component: EmotionRecAPIComponent },
   { path: 'emotionAPI', component: EmotionRecAPIComponent },
   { path: 'faceAPI', component: FaceAPIComponent },
+  { path: 'visioAPI', component: VisionComponent},
   { path: '*', component: EmotionRecAPIComponent }
 ];
 
@@ -40,7 +43,8 @@ const appRoutes: Routes = [
     ButtonsFrameComponent,
     EmotionRecAPIComponent,
     FaceAPIComponent,
-    DialogComponent
+    DialogComponent,
+    VisionComponent
   ],
   imports: [
     BrowserModule,

@@ -10,7 +10,7 @@ import { MD_DIALOG_DATA } from '@angular/material';
   selector: 'app-emotion-rec-api',
   templateUrl: './emotion-rec-api.component.html',
   styleUrls: ['./emotion-rec-api.component.css'],
-  providers: [EmotionService],
+  providers: [EmotionService, MdDialog]
 })
 export class EmotionRecAPIComponent implements OnInit {
 

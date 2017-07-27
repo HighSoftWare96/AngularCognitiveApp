@@ -8,7 +8,6 @@ import { Observable } from 'rxjs/Rx';
 export class FaceDetectionService {
 
   private fileData: any = undefined;
-  public emotions: String[] = [];
   public canvasVisibility: String = 'hidden';
   public ImageResultArray: FaceDetectionData[] = [];
 
@@ -31,7 +30,6 @@ export class FaceDetectionService {
 
   public sendRequestData(): Observable<FaceDetectionData[]> {
     if (this.fileData !== undefined) {
-      this.emotions = [];
       const url = environment.url_face;
       const h = new Headers();
       h.append('Ocp-Apim-Subscription-Key', environment.subscription_key_face);

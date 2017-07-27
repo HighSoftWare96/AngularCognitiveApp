@@ -12,7 +12,7 @@ import {MdButtonModule, MdCheckboxModule} from '@angular/material';
 export class ButtonsFrameComponent implements OnInit {
 
   available_services: CognitiveServices[] = [new CognitiveServices('Emotion Recognition API', '/emotionAPI', 'remove_red_eye'),
-  new CognitiveServices('Face Detection API', '/faceAPI', 'face')];
+  new CognitiveServices('Face Detection API', '/faceAPI', 'face'), new CognitiveServices('Computer vision API', '/visioAPI', 'wallpaper')];
 
   constructor(private location: Location, private router: Router) { }
 
