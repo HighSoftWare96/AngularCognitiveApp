@@ -49,6 +49,7 @@ export class VisionComponent implements OnInit {
       },
         error => {
           this.loading = false;
+          console.log(error);
           this.openDialog(error.statusText);
         }
       );
@@ -60,6 +61,7 @@ export class VisionComponent implements OnInit {
 
   public clickedImage(index: number): void {
     if (this.loading === false) {
+      // this.visionService.readImage(this.images[index].path);
       const path = this.images[index].path;
       this.images[index].selected = true;
       this.selectedImage = this.images[index];

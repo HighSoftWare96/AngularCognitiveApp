@@ -9,7 +9,7 @@ import { EmotionRecAPIComponent } from './emotion-rec-api/emotion-rec-api.compon
 import { DialogComponent } from './emotion-rec-api/emotion-rec-api.component';
 import { Http, RequestOptionsArgs, Headers } from '@angular/http';
 import { FaceAPIComponent } from './face-api/face-api.component';
-import { MdButtonModule, MdCheckboxModule } from '@angular/material';
+import { MdButtonModule, MdCheckboxModule, MD_DIALOG_DATA, MdDialogRef } from '@angular/material';
 import { MdProgressBarModule } from '@angular/material';
 import { MdCardModule } from '@angular/material';
 import { MdIconModule } from '@angular/material';
@@ -26,13 +26,13 @@ import { MdToolbarModule } from '@angular/material';
 import { MdDialogModule } from '@angular/material';
 import { MdTabsModule } from '@angular/material';
 import { VisionComponent } from './vision/vision.component';
-
+import { UrlResolver } from '@angular/compiler';
 
 const appRoutes: Routes = [
   { path: '', component: EmotionRecAPIComponent },
   { path: 'emotionAPI', component: EmotionRecAPIComponent },
   { path: 'faceAPI', component: FaceAPIComponent },
-  { path: 'visioAPI', component: VisionComponent},
+  { path: 'visioAPI', component: VisionComponent },
   { path: '*', component: EmotionRecAPIComponent }
 ];
 
@@ -67,7 +67,8 @@ const appRoutes: Routes = [
     MdToolbarModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [{ provide: MD_DIALOG_DATA, useValue: {} },
+  { provide: MdDialogRef, useValue: {} }, UrlResolver],
   bootstrap: [AppComponent],
   entryComponents: [
     DialogComponent
