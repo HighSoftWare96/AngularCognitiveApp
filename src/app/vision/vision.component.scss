@@ -17,7 +17,7 @@ h2{
   animation-name: turnOn;
   animation-duration: 0.8s;
   border-style: solid;
-  border-color: red;
+  border-color: #c2185b;
   border-width: 0px 0px 4px 0px;
   opacity: 0.5;
 }
@@ -31,6 +31,25 @@ h2{
   animation-duration: 1s;
 }
 
+.image-container {
+  background-color: #4d4d4d;
+}
+.card {
+  max-width: 80%;
+}
+.card-avatar {
+  width: 70px;
+  height: 70px;
+  background-size: cover;
+}
+
+span.circle {
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  border-left: 8px;
+  display: inline-block 
+}
 
 #header {
   background-color: black;

@@ -27,16 +27,4 @@ export class VisionService {
       });
 
   }
-
-  private readImage(path: string): void {
-    console.log(path);
-    const file: File = new File([''], path);
-    console.dir(file);
-    const inputFromFile: FileReader = new FileReader();
-    inputFromFile.onloadend = function (e) {
-      console.log(inputFromFile.result);
-      this.fileData = inputFromFile.result;
-    }.bind(this);
-    inputFromFile.readAsArrayBuffer(file);
-  }
 }

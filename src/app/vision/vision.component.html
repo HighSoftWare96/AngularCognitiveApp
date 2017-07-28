@@ -21,13 +21,60 @@
       <img [ngClass]="{'selected': item.selected}" src="{{item.pathMin}}" (click)="this.clickedImage(this.images.indexOf(item))">
     </md-grid-tile>
     <md-grid-tile colspan="5" rowspan="1">
-      <button md-raised-button color="warn" (click)="sendImage()">Send this image</button>
-      <md-spinner *ngIf="this.loading" style="width:30px; padding-left: 20px;" color="warn"></md-spinner>
+      <button md-raised-button (click)="sendImage()">Send this image</button>
+      <md-spinner *ngIf="this.loading" style="width:30px; padding-left: 20px;"></md-spinner>
     </md-grid-tile>
-    <md-grid-tile colspan="5" rowspan="5">
-        <p *ngIf="this.selectedImage == undefined">
+    <md-grid-tile colspan="5" rowspan="5" class="image-container">
+      <p *ngIf="this.selectedImage == undefined">
         <md-icon style="padding-right: 10px;">wallpaper</md-icon> Select an image... </p>
       <img *ngIf="this.selectedImage != undefined" class="image-preview" src="{{this.selectedImage.path}}">
+    </md-grid-tile>
+    <md-grid-tile colspan="5" rowspan="8" *ngIf="this.visionService.results !== undefined">
+      <md-card class="card" layout-align="center center">
+        <md-card-header>
+          <div md-card-avatar class="card-avatar" [ngStyle]="{'background-image': 'url(' + this.selectedImage.pathMin + ')'}"></div>
+          <md-card-title style="font-size: 1.3em;">Details fetched</md-card-title>
+          <md-card-subtitle style="font-size: 1em;">Vision API</md-card-subtitle>
+        </md-card-header>
+        <md-card-content>
+          <md-list *ngFor="let item of this.visionService.results.categories">
+            <md-list-item>
+              <h3 md-subheader>Description</h3>
+              <p> {{item.name}} <small>({{item.score}})</small></p>
+            </md-list-item>
+            <md-list-item *ngIf="item.detail !== undefined">
+              <h3 md-subheader>Celebrities</h3>
+              <p *ngFor="let item2 of item.detail.celebrities"> {{item2.name}} </p>
+              <p *ngIf="item.detail.celebrities.length === 0"> - - </p>
+            </md-list-item>
+            <md-list-item *ngIf="item.detail !== undefined">
+              <h3 md-subheader>Landmarks</h3>
+              <p> {{item.detail.landmarks === undefined ?'- -':item.detail.landmarks}} </p>
+            </md-list-item>
+          </md-list>
+          <br>
+          <md-divider></md-divider>
+          <h3 md-subheader>Tags</h3>
+          <md-chip-list>
+            <md-chip *ngFor="let item of this.visionService.results.tags">{{item.name}}</md-chip>
+          </md-chip-list>
+          <br>
+          <md-divider></md-divider>
+          <h3 md-subheader>Textual description</h3>
+          <p *ngFor="let item of this.visionService.results.description.captions">{{item.text}} <small>({{item.confidence}})</small></p>
+          <md-divider></md-divider>
+          <br>
+          <h3 md-subheader> Detected colors </h3>
+          <p>Dominant color (foreground): {{this.visionService.results.color.dominantColorForeground}} <span class="circle"
+              [ngStyle]="{'background-color': this.visionService.results.color.dominantColorForeground}"></span></p>
+          <p>Dominant color (background): {{this.visionService.results.color.dominantColorBackground}} <span class="circle"
+              [ngStyle]="{'background-color': this.visionService.results.color.dominantColorBackground}"></span></p>
+          <p *ngFor="let item of this.visionService.results.color.dominantColors">Others: {{item}} <span class="circle" [ngStyle]="{'background-color': item}"></span></p>
+          <p>Accent color: {{this.visionService.results.color.accentColor}} <span class="circle" [ngStyle]="{'background-color': '#' + this.visionService.results.color.accentColor}"></span></p>
+          <p>BW? {{this.visionService.results.color.isBWImg}}</p>
+          <br>
+        </md-card-content>
+      </md-card>
     </md-grid-tile>
   </md-grid-list>
   <br>
