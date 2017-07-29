@@ -14,17 +14,20 @@ export class VisionService {
   constructor(private location: Location, private http: Http) { }
 
   public sendRequestData(path: string): Observable<VisionData> {
+    this.clearData();
     const url = environment.url_vision;
     const h = new Headers();
     h.append('Ocp-Apim-Subscription-Key', environment.subscription_key_vision);
 
-    console.log(path);
     return this.http.post(url, { url: path }, { headers: h })
       .map(res => {
         this.results = res.json();
-        console.dir(this.results);
         return this.results;
       });
 
+  }
+
+  public clearData() {
+    this.results = undefined;
   }
 }

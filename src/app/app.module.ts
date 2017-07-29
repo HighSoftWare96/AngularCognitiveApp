@@ -27,6 +27,7 @@ import { MdDialogModule } from '@angular/material';
 import { MdTabsModule } from '@angular/material';
 import { VisionComponent } from './vision/vision.component';
 import { MdChipsModule } from '@angular/material';
+import { MdInputModule } from '@angular/material';
 
 const appRoutes: Routes = [
   { path: '', component: EmotionRecAPIComponent },
@@ -66,6 +67,7 @@ const appRoutes: Routes = [
     MdSidenavModule,
     MdToolbarModule,
     MdChipsModule,
+    MdInputModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [{ provide: MD_DIALOG_DATA, useValue: {} },

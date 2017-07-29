@@ -1,7 +1,7 @@
 import { DialogComponent } from '../emotion-rec-api/emotion-rec-api.component';
 import { MdDialog } from '@angular/material';
 import { MD_DIALOG_DATA, MdDialogRef } from '@angular/material';
-import { Component, OnInit, ViewChild, Inject } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject, ElementRef } from '@angular/core';
 import { VisionService } from '../vision-service/vision.service';
 import { VisionData } from './../definitions/VisionDefine';
 
@@ -10,9 +10,11 @@ import { VisionData } from './../definitions/VisionDefine';
   templateUrl: './vision.component.html',
   styleUrls: ['./vision.component.scss'],
   providers: [VisionService, { provide: MD_DIALOG_DATA, useValue: {} },
-    { provide: MdDialogRef, useValue: {} }, ],
+    { provide: MdDialogRef, useValue: {} },],
 })
 export class VisionComponent implements OnInit {
+  @ViewChild('imageUrl') imageUrl: ElementRef;
+
   public loading = false;
   public images: ImageView[] = [new ImageView('https://raw.githubusercontent.com/HighSoftWare96/AngularCognitiveApp/master/src/assets/images/gallery_visio/1.jpg', 'https://raw.githubusercontent.com/HighSoftWare96/AngularCognitiveApp/master/src/assets/images/gallery_visio/min/1.jpg', false),
   new ImageView('https://raw.githubusercontent.com/HighSoftWare96/AngularCognitiveApp/master/src/assets/images/gallery_visio/2.jpg', 'https://raw.githubusercontent.com/HighSoftWare96/AngularCognitiveApp/master/src/assets/images/gallery_visio/min/2.jpg', false),
@@ -49,7 +51,6 @@ export class VisionComponent implements OnInit {
       },
         error => {
           this.loading = false;
-          console.log(error);
           this.openDialog(error.statusText);
         }
       );
@@ -60,12 +61,29 @@ export class VisionComponent implements OnInit {
   }
 
   public clickedImage(index: number): void {
+    // pulisco i risultati vecchi
+    this.visionService.clearData();
     if (this.loading === false) {
-      // this.visionService.readImage(this.images[index].path);
       const path = this.images[index].path;
       this.images[index].selected = true;
       this.selectedImage = this.images[index];
       this.clearOtherSelections(index);
+    }
+  }
+
+  public clickedUrl(): void {
+
+    this.visionService.clearData();
+
+    const path = this.imageUrl.nativeElement.value;
+    if (path === '') {
+      this.openDialog('No url');
+      return;
+    }
+    if (this.loading === false) {
+      this.clearOtherSelections(-1);
+      this.selectedImage = new ImageView(path, '', true);
+      this.sendImage();
     }
   }
 

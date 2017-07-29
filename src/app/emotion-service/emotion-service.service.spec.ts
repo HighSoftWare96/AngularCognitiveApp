@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { EmotionServiceService } from './emotion-service.service';
+import { EmotionService } from './emotion-service.service';
 
 describe('EmotionServiceService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [EmotionServiceService]
+      providers: [EmotionService]
     });
   });
 
-  it('should be created', inject([EmotionServiceService], (service: EmotionServiceService) => {
+  it('should be created', inject([EmotionService], (service: EmotionService) => {
     expect(service).toBeTruthy();
   }));
 });

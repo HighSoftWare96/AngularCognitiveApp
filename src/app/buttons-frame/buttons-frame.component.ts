@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
-import {MdButtonModule, MdCheckboxModule} from '@angular/material';
+import { MdButtonModule, MdCheckboxModule } from '@angular/material';
 
 @Component({
   selector: 'app-buttons-frame',
@@ -18,18 +18,6 @@ export class ButtonsFrameComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  changeRouting(service) {
-    switch (service) {
-      case this.available_services[0]:
-        this.router.navigate(['/emotionAPI']);
-        break;
-      case this.available_services[1]:
-        this.router.navigate(['/faceAPI']);
-        break;
-    }
-  }
-
 }
 
 export class CognitiveServices {
@@ -37,7 +25,7 @@ export class CognitiveServices {
   public link: String;
   public icon: String;
 
-  constructor(name: String, link: String, icon: String){
+  constructor(name: String, link: String, icon: String) {
     this.name = name;
     this.link = link;
     this.icon = icon;

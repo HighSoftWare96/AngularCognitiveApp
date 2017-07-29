@@ -22,6 +22,11 @@
     </md-grid-tile>
     <md-grid-tile colspan="5" rowspan="1">
       <button md-raised-button (click)="sendImage()">Send this image</button>
+      <p style="margin-left:20px; margin-right:20px;">or</p>
+      <md-input-container>
+        <input mdInput #imageUrl placeholder="Insert an url" value="">
+      </md-input-container>
+      <button md-raised-button style="margin-left: 10px;" (click)="this.clickedUrl()">Go</button>
       <md-spinner *ngIf="this.loading" style="width:30px; padding-left: 20px;"></md-spinner>
     </md-grid-tile>
     <md-grid-tile colspan="5" rowspan="5" class="image-container">
